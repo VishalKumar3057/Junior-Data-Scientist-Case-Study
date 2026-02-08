@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PFM Analytics & Customer Churn Risk - Case Study Presentation</title>
+    <style>
+        @page {
+            size: A4 landscape;
+            margin: 0;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f5f5;
+        }
+        
+        .slide {
+            width: 297mm;
+            height: 210mm;
+            padding: 40px 60px;
+            background: white;
+            page-break-after: always;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .slide-header {
+            border-bottom: 4px solid #2563eb;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .slide-title {
+            font-size: 42px;
+            color: #1e40af;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        .slide-subtitle {
+            font-size: 24px;
+            color: #64748b;
+            font-weight: 400;
+        }
+        
+        h2 {
+            font-size: 36px;
+            color: #1e40af;
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+        
+        h3 {
+            font-size: 28px;
+            color: #334155;
+            margin: 20px 0 15px 0;
+            font-weight: 600;
+        }
+        
+        p, li {
+            font-size: 20px;
+            line-height: 1.6;
+            color: #334155;
+            margin-bottom: 12px;
+        }
+        
+        ul {
+            margin-left: 30px;
+        }
+        
+        .highlight {
+            background: #fef3c7;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+        
+        .metric-box {
+            background: #eff6ff;
+            border-left: 5px solid #2563eb;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 8px;
+        }
+        
+        .metric-value {
+            font-size: 48px;
+            font-weight: 700;
+            color: #1e40af;
+            margin-bottom: 5px;
+        }
+        
+        .metric-label {
+            font-size: 20px;
+            color: #64748b;
+        }
+        
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 20px;
+        }
+        
+        .feature-category {
+            background: #f8fafc;
+            padding: 20px;
+            border-radius: 8px;
+            border: 2px solid #e2e8f0;
+        }
+        
+        .footer {
+            position: absolute;
+            bottom: 20px;
+            right: 60px;
+            font-size: 16px;
+            color: #94a3b8;
+        }
+        
+        .title-slide {
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+            color: white;
+        }
+        
+        .title-slide .slide-title {
+            color: white;
+            font-size: 56px;
+            margin-bottom: 20px;
+        }
+        
+        .title-slide .slide-subtitle {
+            color: #dbeafe;
+            font-size: 32px;
+        }
+        
+        .key-point {
+            background: #f0fdf4;
+            border-left: 5px solid #22c55e;
+            padding: 15px 20px;
+            margin: 10px 0;
+            border-radius: 6px;
+        }
+        
+        .warning-point {
+            background: #fef2f2;
+            border-left: 5px solid #ef4444;
+            padding: 15px 20px;
+            margin: 10px 0;
+            border-radius: 6px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 18px;
+        }
+        
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        th {
+            background: #f1f5f9;
+            font-weight: 600;
+            color: #1e40af;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            margin-right: 8px;
+        }
+        
+        .badge-success {
+            background: #dcfce7;
+            color: #166534;
+        }
+        
+        .badge-info {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+        
+        .badge-warning {
+            background: #fef3c7;
+            color: #92400e;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Slide 1: Title -->
+<div class="slide title-slide">
+    <div>
+        <div class="slide-title">PFM Analytics & Customer Churn Risk</div>
+        <div class="slide-subtitle">A Data-Driven Approach to Customer Retention</div>
+        <p style="margin-top: 40px; font-size: 24px; color: #dbeafe;">Junior Data Scientist Case Study</p>
+        <p style="margin-top: 40px; font-size: 24px; color: #dbeafe;">Vishal Kumar</p>
+    </div>
+</div>
+
+<!-- Slide 2: Problem Statement & Objectives -->
+<div class="slide">
+    <div class="slide-header">
+        <h2>Problem Statement & Objectives</h2>
+    </div>
+
+    <h3>Business Context</h3>
+    <p>A digital bank wants to leverage transaction data to provide valuable <span class="highlight">Personal Financial Management (PFM)</span> insights and proactively reduce customer churn.</p>
+
+    <h3 style="margin-top: 30px;">Project Objectives</h3>
+    <div class="two-column">
+        <div class="metric-box">
+            <div style="font-size: 32px; font-weight: 700; color: #2563eb; margin-bottom: 10px;">1. PFM Analytics</div>
+            <p style="margin: 0;">Analyze customer spending and cashflow patterns to generate actionable insights for in-app experience</p>
+        </div>
+        <div class="metric-box">
+            <div style="font-size: 32px; font-weight: 700; color: #2563eb; margin-bottom: 10px;">2. Churn Modeling</div>
+            <p style="margin: 0;">Build a baseline predictive model to identify customers at high risk of churning in the next 30 days</p>
+        </div>
+    </div>
+
+    <div class="footer">Slide 2</div>
+</div>
+
+<!-- Slide 3: Data Quality & Cleaning Approach -->
+<div class="slide">
+    <div class="slide-header">
+        <h2>Data Quality & Cleaning Approach</h2>
+    </div>
+
+    <p style="margin-bottom: 25px;">The raw dataset contained several data quality issues that were systematically resolved:</p>
+
+    <div class="key-point">
+        <strong>✓ Normalized Timestamps:</strong> Used <code>pd.to_datetime(errors='coerce')</code> to handle mixed date formats (ISO, DD/MM/YYYY) automatically
+    </div>
+
+    <div class="key-point">
+        <strong>✓ Cleaned Financial Data:</strong> Applied <code>pd.to_numeric()</code> and <code>np.where()</code> for vectorized sign logic (debit = negative, credit = positive)
+    </div>
+
+    <div class="key-point">
+        <strong>✓ Standardized Categories:</strong> Fixed misspellings (Grocerries → Groceries), mapped city codes (KHI → Karachi)
+    </div>
+
+    <div class="key-point">
+        <strong>✓ Handled Duplicates:</strong> Removed exact duplicates and duplicate transaction IDs to prevent data inflation
+    </div>
+
+    <div class="key-point">
+        <strong>✓ Imputed Missing Values:</strong> Used median for numeric fields, mode for categorical fields with business justification
+    </div>
+
+    <p style="margin-top: 25px; font-style: italic; color: #64748b;">All cleaning decisions were documented with clear justifications for reproducibility and transparency.</p>
+
+        <div class="footer">Slide 3</div>
+
+    </div>
+
+    
+
+    <!-- Slide 4: Key PFM Insights -->
+
+    <div class="slide">
+
+        <div class="slide-header">
+
+            <h2>Key PFM Insights</h2>
+
+        </div>
+
+    
+
+    
+
+    
+
+        <div class="key-point" style="margin-top: 25px;">
+
+            <strong>Insight 1: Top Spending Categories</strong>
+
+            <ul style="margin-top: 10px;">
+
+                <li><strong>'Rent' dominates (~54.9M PKR)</strong>, highlighting recurring housing payments.</li>
+
+                <li><strong>'Utilities' (~31.2M PKR) and 'TransferOut' (~11.9M PKR) are next</strong>, indicating essential bills and P2P transfers.</li>
+
+            </ul>
+
+            <p style="margin-top: 10px; font-size: 18px; color: #64748b;">→ Focus on solutions for essential recurring payments.</p>
+
+        </div>
+
+    
+
+        <div class="two-column" style="margin-top: 25px;">
+
+            <div>
+
+                <div class="key-point">
+
+                    <strong>Insight 2: Segment-Specific Spending</strong>
+
+                    <ul style="margin-top: 10px;">
+
+                        <li><strong>Affluent:</strong> Dominant proportion on Rent (~58%).</li>
+
+                        <li><strong>Retail:</strong> Balanced spending, significant Rent (~45%) and Utilities (~30%).</li>
+
+                        <li><strong>Students:</strong> Lowest Rent (~25%), highest Utilities (~35%) and TransferOut (~16%).</li>
+
+                    </ul>
+
+                    <p style="margin-top: 10px; font-size: 18px; color: #64748b;">→ Enables highly personalized product & marketing strategies.</p>
+
+                </div>
+
+            </div>
+
+            <div>
+
+                <div class="key-point">
+
+                    <strong>Insight 3: Transaction Activity Patterns</strong>
+
+                    <ul style="margin-top: 10px;">
+
+                        <li>Peak activity: <strong>Weekday afternoons (10 AM - 6 PM)</strong></li>
+
+                        <li>Weekend activity significantly lower</li>
+
+                    </ul>
+
+                    <p style="margin-top: 10px; font-size: 18px; color: #64748b;">→ Optimal timing for notifications & campaigns</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    
+
+        <div class="metric-box" style="margin-top: 20px;">
+
+            <strong>Recurring Payments Detected:</strong> Successfully identified monthly recurring patterns (rent, utilities, subscriptions) using 27-33 day window heuristic
+
+        </div>
+
+    
+
+        <div class="footer">Slide 4</div>
+
+    </div>
+
+    
+
+    <!-- Slide 5: Feature Engineering Strategy -->
+<div class="slide">
+    <div class="slide-header">
+        <h2>Feature Engineering Strategy</h2>
+    </div>
+
+    <p style="margin-bottom: 20px;">Transformed raw transaction logs into rich customer-level features capturing behavioral patterns:</p>
+
+    <div class="feature-category">
+        <h3 style="margin: 0 0 15px 0; color: #2563eb;">💰 Monetary Features</h3>
+        <p style="margin: 0;"><strong>Purpose:</strong> Capture the <em>value</em> and <em>scale</em> of financial activity</p>
+        <ul style="margin-top: 10px;">
+            <li>Total inflow, avg transaction amount, spending variability (std)</li>
+            <li>Avg debit/credit amounts using <code>lambda</code> functions</li>
+        </ul>
+    </div>
+
+    <div class="two-column" style="margin-top: 20px;">
+        <div class="feature-category">
+            <h3 style="margin: 0 0 15px 0; color: #2563eb;">📊 Frequency Features</h3>
+            <p style="margin: 0;"><strong>Purpose:</strong> Capture <em>activity level</em> and <em>engagement</em></p>
+            <ul style="margin-top: 10px;">
+                <li>Transaction count</li>
+                <li><strong>Days since last transaction</strong> (RFM recency - strongest churn predictor)</li>
+            </ul>
+        </div>
+        <div class="feature-category">
+            <h3 style="margin: 0 0 15px 0; color: #2563eb;">🎯 Behavioral Features</h3>
+            <p style="margin: 0;"><strong>Purpose:</strong> Capture <em>habits</em> and <em>lifestyle</em></p>
+            <ul style="margin-top: 10px;">
+                <li>Essential spend share (groceries, utilities)</li>
+                <li>Bill payments count, unique merchants</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="key-point" style="margin-top: 20px;">
+        <strong>Normalization:</strong> Used <span class="highlight">StandardScaler</span> (z-score) instead of MinMaxScaler because it handles outliers better and ensures regularization works properly for Logistic Regression
+    </div>
+
+    <div class="footer">Slide 5</div>
+</div>
+
+<!-- Slide 6: Model Performance & Results -->
+<div class="slide">
+    <div class="slide-header">
+        <h2>Model Performance & Results</h2>
+    </div>
+
+    <h3>Model Comparison (5-Fold Cross-Validation)</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Model</th>
+                <th>Recall</th>
+                <th>Precision</th>
+                <th>F1 Score</th>
+                <th>ROC-AUC</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr style="background: #f0fdf4;">
+                <td><strong>Logistic Regression ✓</strong></td>
+                <td><strong>0.70 ± 0.03</strong></td>
+                <td>0.42 ± 0.02</td>
+                <td>0.52 ± 0.02</td>
+                <td>0.75 ± 0.02</td>
+            </tr>
+            <tr>
+                <td>Decision Tree</td>
+                <td>0.68 ± 0.04</td>
+                <td>0.38 ± 0.03</td>
+                <td>0.49 ± 0.03</td>
+                <td>0.71 ± 0.03</td>
+            </tr>
+            <tr>
+                <td>Random Forest</td>
+                <td>0.69 ± 0.03</td>
+                <td>0.44 ± 0.02</td>
+                <td>0.54 ± 0.02</td>
+                <td>0.76 ± 0.02</td>
+            </tr>
+            <tr>
+                <td>Gradient Boosting</td>
+                <td>0.68 ± 0.03</td>
+                <td>0.43 ± 0.02</td>
+                <td>0.53 ± 0.02</td>
+                <td>0.77 ± 0.02</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="two-column" style="margin-top: 20px;">
+        <div class="metric-box">
+            <div class="metric-value">70%</div>
+            <div class="metric-label">Recall - Successfully catch 70% of churners</div>
+        </div>
+        <div class="metric-box">
+            <div class="metric-value">0.42</div>
+            <div class="metric-label">Optimal Threshold (vs default 0.5)</div>
+        </div>
+    </div>
+
+    <p style="margin-top: 20px;"><span class="badge badge-success">Selected Model</span> <strong>Logistic Regression</strong> - Best recall, most interpretable, fast training</p>
+
+    <div class="footer">Slide 6</div>
+</div>
+
+<!-- Slide 6a: Model Evaluation - Confusion Matrix -->
+<div class="slide">
+    <div class="slide-header">
+        <h2>Model Evaluation: Confusion Matrix</h2>
+    </div>
+
+    <p style="margin-bottom: 25px;">The confusion matrix provides a detailed breakdown of the model's predictions versus the actual outcomes on the test set.</p>
+
+    <div style="display: flex; justify-content: center; align-items: center; flex-direction: column; margin-top: 20px;">
+        <h3 style="margin-bottom: 20px;">Confusion Matrix (Test Set, Threshold=0.5)</h3>
+        <table style="width: 70%; font-size: 20px; text-align: center;">
+            <thead>
+                <tr>
+                    <th style="width: 33%;"></th>
+                    <th style="background: #eff6ff; color: #1e40af; border: 1px solid #e2e8f0;" colspan="2">Predicted</th>
+                </tr>
+                <tr>
+                    <th style="width: 33%;"></th>
+                    <th style="background: #f1f5f9; border: 1px solid #e2e8f0;">Not Churn</th>
+                    <th style="background: #f1f5f9; border: 1px solid #e2e8f0;">Churn</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td rowspan="2" style="font-weight: 600; background: #eff6ff; color: #1e40af; border: 1px solid #e2e8f0; writing-mode: vertical-rl; transform: rotate(180deg);">Actual</td>
+                    <td style="background: #dcfce7; color: #166534; font-weight: 700; font-size: 24px; border: 1px solid #e2e8f0;">35 (TN)</td>
+                    <td style="background: #fef9c3; color: #92400e; font-weight: 700; font-size: 24px; border: 1px solid #e2e8f0;">31 (FP)</td>
+                </tr>
+                <tr>
+                    <td style="background: #fee2e2; color: #991b1b; font-weight: 700; font-size: 24px; border: 1px solid #e2e8f0;">8 (FN)</td>
+                    <td style="background: #dcfce7; color: #166534; font-weight: 700; font-size: 24px; border: 1px solid #e2e8f0;">6 (TP)</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="two-column" style="margin-top: 30px;">
+        <div class="key-point">
+            <strong>Key Insight: Prioritizing Recall</strong>
+            <p style="margin-top: 10px;">For churn prediction, a <strong>False Negative (FN)</strong> — failing to identify a customer who will churn — is much more costly than a <strong>False Positive (FP)</strong>. Our model is optimized to minimize missed churners.</p>
+        </div>
+        <div class="metric-box" style="padding: 15px;">
+            <p style="margin: 0;"><strong>True Positives (TP):</strong> 6 churners correctly identified.</p>
+            <p style="margin: 5px 0 0 0;"><strong>False Negatives (FN):</strong> 8 churners were missed.</p>
+            <p style="margin: 5px 0 0 0; font-weight: 700;">Recall = TP / (TP + FN) = 6 / 14 ≈ 43%</p>
+            <p style="margin: 5px 0 0 0; font-size: 16px; color: #64748b;">(Note: This is on a small test set. Cross-validated recall is ~70%.)</p>
+        </div>
+    </div>
+
+    <div class="footer">Slide 6a</div>
+</div>
+
+<!-- Slide 6b: Model Evaluation - Threshold Tuning -->
+<div class="slide">
+    <div class="slide-header">
+        <h2>Model Evaluation: Threshold Tuning</h2>
+    </div>
+
+    <p style="margin-bottom: 25px;">The default 0.5 classification threshold is not optimal for this problem. We use a <strong>Precision-Recall Curve</strong> to find a threshold that balances business needs.</p>
+
+    <div class="two-column" style="margin-top: 30px;">
+        <div class="metric-box">
+            <h3 style="margin-top: 0; color: #1e40af;">The Trade-Off</h3>
+            <p style="margin-bottom: 15px;"><strong>Lowering the threshold:</strong></p>
+            <ul style="margin-left: 20px;">
+                <li style="color: #166534;"><strong>Increases Recall:</strong> We catch more potential churners. (Good)</li>
+                <li style="color: #991b1b;"><strong>Decreases Precision:</strong> We get more "false alarms". (Trade-off)</li>
+            </ul>
+        </div>
+        <div class="key-point" style="background: #fffbeb; border-left-color: #f59e0b;">
+            <h3 style="margin-top: 0; color: #92400e;">Business Rationale</h3>
+            <p>The cost of <strong>missing a churner (False Negative)</strong> is much higher than the cost of a <strong>false alarm (False Positive)</strong>.</p>
+            <p style="font-weight: 600; margin-top: 15px;">Therefore, we prioritize a high Recall (~70%).</p>
+        </div>
+    </div>
+    
+    <div class="metric-box" style="margin-top: 30px; border-left-color: #22c55e;">
+        <div class="metric-value" style="font-size: 42px;">Threshold: 0.45</div>
+        <div class="metric-label">Selected to achieve the target recall of ~70% while maintaining acceptable precision. This ensures we proactively engage a majority of at-risk customers.</div>
+    </div>
+
+    <div class="footer">Slide 6b</div>
+</div>
+
+<!-- Slide 7: Key Churn Drivers -->
+<div class="slide">
+    <div class="slide-header">
+        <h2>Key Churn Drivers</h2>
+    </div>
+
+    <p style="margin-bottom: 25px;">Feature importance analysis reveals what drives customer churn:</p>
+
+    <div class="warning-point">
+        <div style="font-size: 28px; font-weight: 700; color: #dc2626; margin-bottom: 10px;">🔴 #1 Predictor: Days Since Last Transaction</div>
+        <p style="margin: 0; font-size: 20px;">The longer a customer has been inactive, the higher their churn risk. This is the <strong>single strongest predictor</strong> in the model.</p>
+    </div>
+
+    <div class="two-column" style="margin-top: 25px;">
+        <div>
+            <div class="key-point">
+                <strong>2. Onboarding Days Ago</strong>
+                <p style="margin: 5px 0 0 0; font-size: 18px;">Older accounts have a higher churn risk compared to newer accounts</p>
+            </div>
+            <div class="key-point" style="margin-top: 15px;">
+                <strong>3. Transaction Count</strong>
+                <p style="margin: 5px 0 0 0; font-size: 18px;">Customers with fewer transactions are more likely to churn</p>
+            </div>
+        </div>
+        <div>
+            <div class="key-point">
+                <strong>4. Support Tickets (90d)</strong>
+                <p style="margin: 5px 0 0 0; font-size: 18px;">Higher support tickets correlate with higher churn risk</p>
+            </div>
+            <div class="key-point" style="margin-top: 15px;">
+                <strong>5. Essential Spend Share</strong>
+                <p style="margin: 5px 0 0 0; font-size: 18px;">Lower essential spending indicates lower engagement</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="metric-box" style="margin-top: 25px; background: #fffbeb; border-left-color: #f59e0b;">
+        <strong>Business Insight:</strong> Focus retention efforts on inactive customers (>30 days since last transaction) and new customers in their first 90 days
+    </div>
+
+    <div class="footer">Slide 7</div>
+</div>
+
+<!-- Slide 7a: Churn Drivers - Feature Importance -->
+<div class="slide">
+    <div class="slide-header">
+        <h2>Churn Drivers: Feature Importance</h2>
+    </div>
+
+    <p style="margin-bottom: 20px;">By inspecting the model's coefficients, we can rank features by their impact on churn prediction. A larger absolute value means a stronger influence.</p>
+
+    <div class="two-column">
+        <div>
+            <h3 style="margin-top: 0; color: #dc2626;">Features that INCREASE Churn Risk 🔴</h3>
+            <ol style="margin-left: 25px; font-size: 18px;">
+                <li><strong>days_since_last_txn</strong> (Impact: ~1.4)</li>
+                <li><strong>onboarding_days_ago</strong> (Impact: ~0.9)</li>
+                <li><strong>support_tickets_90d</strong> (Impact: ~0.7)</li>
+                <li>city_Rawalpindi</li>
+                <li>city_Lahore</li>
+                <li>segment_Retail</li>
+            </ol>
+        </div>
+        <div>
+            <h3 style="margin-top: 0; color: #166534;">Features that DECREASE Churn Risk 🟢</h3>
+            <ol style="margin-left: 25px; font-size: 18px;">
+                <li><strong>txn_count</strong> (Impact: ~-0.8)</li>
+                <li><strong>essential_spend_share</strong> (Impact: ~-0.6)</li>
+                <li>max_credit</li>
+                <li>avg_credit_amount</li>
+                <li>total_inflow</li>
+                <li>unique_merchants_count</li>
+            </ol>
+        </div>
+    </div>
+
+    <div class="key-point" style="margin-top: 25px;">
+        <strong>Key Takeaway:</strong> Churn is primarily driven by <strong>inactivity</strong> (high `days_since_last_txn`, low `txn_count`). Customer tenure (`onboarding_days_ago`) and engagement with essential services (`essential_spend_share`) are also critical factors.
+    </div>
+    
+    <div class="footer">Slide 7a</div>
+</div>
+
+<!-- Slide 7b: Churn Drivers - Inactivity Behavior -->
+<div class="slide">
+    <div class="slide-header">
+        <h2>Churn Drivers: Inactivity Behavior</h2>
+    </div>
+
+    <p style="margin-bottom: 25px;">A box plot of <strong>Days Since Last Transaction</strong> provides strong visual evidence for why inactivity is the #1 predictor of churn.</p>
+
+    <div class="two-column" style="margin-top: 30px;">
+        <div class="metric-box" style="background: #f0fdf4; border-left-color: #22c55e;">
+            <h3 style="margin-top: 0; color: #166534;">Active Customers (Not Churned)</h3>
+            <div class="metric-value" style="color: #166534;">10-15</div>
+            <div class="metric-label">Median Days Since Last Transaction</div>
+            <p style="margin-top: 15px;">These customers are consistently active, with 50% having transacted in the last two weeks.</p>
+        </div>
+        <div class="metric-box" style="background: #fef2f2; border-left-color: #ef4444;">
+            <h3 style="margin-top: 0; color: #b91c1c;">Churned Customers</h3>
+            <div class="metric-value" style="color: #b91c1c;">40-50</div>
+            <div class="metric-label">Median Days Since Last Transaction</div>
+            <p style="margin-top: 15px;">Churned customers are typically inactive for over a month, showing a clear behavioral shift.</p>
+        </div>
+    </div>
+    
+    <div class="warning-point" style="margin-top: 30px; background: #fffbeb; border-left-color: #f59e0b;">
+        <h3 style="margin-top: 0; color: #92400e;">Actionable Insight</h3>
+        <p>The clear separation between the two groups confirms that a threshold of <strong>>30 days of inactivity</strong> is a powerful and reliable trigger for initiating retention campaigns.</p>
+    </div>
+
+    <div class="footer">Slide 7b</div>
+</div>
+
+<!-- Slide 8: Recommendations & Next Steps -->
+<div class="slide">
+    <div class="slide-header">
+        <h2>Recommendations & Next Steps</h2>
+    </div>
+
+    <h3>🎯 Business Recommendations</h3>
+
+    <div class="key-point">
+        <strong>1. Deploy Churn Model (Threshold = 0.45)</strong>
+        <ul style="margin-top: 10px;">
+            <li>Identify at-risk customers weekly</li>
+            <li>Target with retention campaigns (special offers, feedback surveys)</li>
+            <li>Expected impact: Catch 70% of churners before they leave</li>
+        </ul>
+    </div>
+
+    <div class="key-point">
+        <strong>2. Enhance PFM App Features</strong>
+        <ul style="margin-top: 10px;">
+            <li>Add "Financial Health" dashboard showing net cashflow trends</li>
+            <li>Provide segment-specific spending insights and budgeting tips</li>
+            <li>Alert customers with negative cashflow about financial wellness tools</li>
+        </ul>
+    </div>
+
+
+
+
+
+    <div class="footer">Slide 8</div>
+</div>
+
+</body>
+</html>
+
