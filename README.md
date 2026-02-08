@@ -72,7 +72,6 @@ This project tackles a case study for a Junior Data Scientist position. It invol
 - **Top 10 Spending Categories** - Horizontal bar chart showing highest spending categories
 - **Transaction Activity Heatmap** - Day × Hour heatmap showing peak transaction times
 - **Recurring Payments Detection** - Count of potential monthly recurring payments (rent, utilities, subscriptions)
-- **Net Cashflow Distribution** - Histogram with KDE showing percentage of customers with negative cashflow
 
 ## Viewing the Presentation
 
