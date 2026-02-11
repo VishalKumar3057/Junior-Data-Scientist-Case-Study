@@ -298,9 +298,11 @@
 
             <ul style="margin-top: 10px;">
 
-                <li><strong>'Rent' dominates (~54.9M PKR)</strong>, highlighting recurring housing payments.</li>
+                                <li><strong>'Rent' dominates (~54.9M PKR)</strong>, highlighting recurring housing payments.</li>
 
-                <li><strong>'Utilities' (~31.2M PKR) and 'TransferOut' (~11.9M PKR) are next</strong>, indicating essential bills and P2P transfers.</li>
+                                <li><strong>'Utilities' (~31.2M PKR) and 'TransferOut' (~11.9M PKR) are next</strong>, indicating essential bills and P2P transfers.</li>
+
+                                <li><strong>'Groceries' (~8.8M PKR) ranks #5</strong>, showing usage for daily necessities.</li>
 
             </ul>
 
@@ -342,9 +344,9 @@
 
                     <ul style="margin-top: 10px;">
 
-                        <li>Peak activity: <strong>Weekday afternoons (10 AM - 6 PM)</strong></li>
+                                            <li>Peak activity: <strong>Weekday afternoons (10 AM - 6 PM)</strong>, aligning with work breaks or commute times.</li>
 
-                        <li>Weekend activity significantly lower</li>
+                                            <li>Weekend activity significantly lower, indicating platform usage for routine transactions.</li>
 
                     </ul>
 
@@ -415,70 +417,7 @@
     <div class="footer">Slide 5</div>
 </div>
 
-<!-- Slide 6: Model Performance & Results -->
-<div class="slide">
-    <div class="slide-header">
-        <h2>Model Performance & Results</h2>
-    </div>
 
-    <h3>Model Comparison (5-Fold Cross-Validation)</h3>
-    <table>
-        <thead>
-            <tr>
-                <th>Model</th>
-                <th>Recall</th>
-                <th>Precision</th>
-                <th>F1 Score</th>
-                <th>ROC-AUC</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr style="background: #f0fdf4;">
-                <td><strong>Logistic Regression ✓</strong></td>
-                <td><strong>0.70 ± 0.03</strong></td>
-                <td>0.42 ± 0.02</td>
-                <td>0.52 ± 0.02</td>
-                <td>0.75 ± 0.02</td>
-            </tr>
-            <tr>
-                <td>Decision Tree</td>
-                <td>0.68 ± 0.04</td>
-                <td>0.38 ± 0.03</td>
-                <td>0.49 ± 0.03</td>
-                <td>0.71 ± 0.03</td>
-            </tr>
-            <tr>
-                <td>Random Forest</td>
-                <td>0.69 ± 0.03</td>
-                <td>0.44 ± 0.02</td>
-                <td>0.54 ± 0.02</td>
-                <td>0.76 ± 0.02</td>
-            </tr>
-            <tr>
-                <td>Gradient Boosting</td>
-                <td>0.68 ± 0.03</td>
-                <td>0.43 ± 0.02</td>
-                <td>0.53 ± 0.02</td>
-                <td>0.77 ± 0.02</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <div class="two-column" style="margin-top: 20px;">
-        <div class="metric-box">
-            <div class="metric-value">70%</div>
-            <div class="metric-label">Recall - Successfully catch 70% of churners</div>
-        </div>
-        <div class="metric-box">
-            <div class="metric-value">0.42</div>
-            <div class="metric-label">Optimal Threshold (vs default 0.5)</div>
-        </div>
-    </div>
-
-    <p style="margin-top: 20px;"><span class="badge badge-success">Selected Model</span> <strong>Logistic Regression</strong> - Best recall, most interpretable, fast training</p>
-
-    <div class="footer">Slide 6</div>
-</div>
 
 <!-- Slide 6a: Model Evaluation - Confusion Matrix -->
 <div class="slide">
@@ -516,17 +455,40 @@
         </table>
     </div>
 
-    <div class="two-column" style="margin-top: 30px;">
-        <div class="key-point">
-            <strong>Key Insight: Prioritizing Recall</strong>
-            <p style="margin-top: 10px;">For churn prediction, a <strong>False Negative (FN)</strong> — failing to identify a customer who will churn — is much more costly than a <strong>False Positive (FP)</strong>. Our model is optimized to minimize missed churners.</p>
-        </div>
-        <div class="metric-box" style="padding: 15px;">
-            <p style="margin: 0;"><strong>True Positives (TP):</strong> 6 churners correctly identified.</p>
-            <p style="margin: 5px 0 0 0;"><strong>False Negatives (FN):</strong> 8 churners were missed.</p>
-            <p style="margin: 5px 0 0 0; font-weight: 700;">Recall = TP / (TP + FN) = 6 / 14 ≈ 43%</p>
-            <p style="margin: 5px 0 0 0; font-size: 16px; color: #64748b;">(Note: This is on a small test set. Cross-validated recall is ~70%.)</p>
-        </div>
+    <div class="key-point" style="margin-top: 30px;">
+        <strong>What it shows:</strong> A 2×2 matrix comparing actual churn status vs. model predictions. Each cell shows the count of customers.
+    </div>
+
+    <div class="key-point">
+        <strong>How to read it:</strong>
+        <ul style="margin-top: 10px;">
+            <li><strong>True Negative (TN, top-left):</strong> Correctly predicted non-churners ✅</li>
+            <li><strong>False Positive (FP, top-right):</strong> Non-churners incorrectly flagged as at-risk ⚠️</li>
+            <li><strong>False Negative (FN, bottom-left):</strong> Missed churners — the WORST outcome ❌</li>
+            <li><strong>True Positive (TP, bottom-right):</strong> Correctly caught churners ✅</li>
+        </ul>
+    </div>
+
+    <div class="warning-point" style="margin-top: 30px;">
+        <strong>Key Insight:</strong> For churn prediction, FN (missed churners) is 10-500x more costly than FP (false alarms). Therefore, we prioritize <strong>Recall</strong> (catching churners) over Precision.
+    </div>
+
+    <div class="metric-box" style="margin-top: 30px; border-left-color: #2563eb;">
+        <h3 style="margin-top: 0; color: #1e40af;">Key Metrics (from this model's performance):</h3>
+        <p style="margin: 0;">Based on the Confusion Matrix above:</p>
+        <ul style="margin-top: 10px;">
+            <li><strong>True Positives (TP):</strong> 6 (Churners correctly identified)</li>
+            <li><strong>False Negatives (FN):</strong> 8 (Actual churners missed by the model)</li>
+            <li><strong>False Positives (FP):</strong> 31 (Non-churners incorrectly flagged as churn)</li>
+            <li><strong>True Negatives (TN):</strong> 35 (Non-churners correctly identified)</li>
+        </ul>
+        <p style="margin-top: 15px;">Calculating key metrics for the churn class (class 1):</p>
+        <ul style="margin-top: 10px;">
+            <li><strong>Recall</strong> = TP / (TP + FN) = 6 / (6 + 8) = 6 / 14 ≈ 0.43 (43% of actual churners caught)</li>
+            <li style="color: #64748b; font-size: 16px;"><em>Our business priority is to achieve a higher recall (e.g., ~70%) given the high cost of missed churners.</em></li>
+            <li><strong>Precision</strong> = TP / (TP + FP) = 6 / (6 + 31) = 6 / 37 ≈ 0.16 (16% of predicted churners actually churned)</li>
+            <li><strong>F1-Score</strong> = 2 * (Precision * Recall) / (Precision + Recall)</li>
+        </ul>
     </div>
 
     <div class="footer">Slide 6a</div>
@@ -540,25 +502,29 @@
 
     <p style="margin-bottom: 25px;">The default 0.5 classification threshold is not optimal for this problem. We use a <strong>Precision-Recall Curve</strong> to find a threshold that balances business needs.</p>
 
-    <div class="two-column" style="margin-top: 30px;">
-        <div class="metric-box">
-            <h3 style="margin-top: 0; color: #1e40af;">The Trade-Off</h3>
-            <p style="margin-bottom: 15px;"><strong>Lowering the threshold:</strong></p>
-            <ul style="margin-left: 20px;">
-                <li style="color: #166534;"><strong>Increases Recall:</strong> We catch more potential churners. (Good)</li>
-                <li style="color: #991b1b;"><strong>Decreases Precision:</strong> We get more "false alarms". (Trade-off)</li>
-            </ul>
-        </div>
-        <div class="key-point" style="background: #fffbeb; border-left-color: #f59e0b;">
-            <h3 style="margin-top: 0; color: #92400e;">Business Rationale</h3>
-            <p>The cost of <strong>missing a churner (False Negative)</strong> is much higher than the cost of a <strong>false alarm (False Positive)</strong>.</p>
-            <p style="font-weight: 600; margin-top: 15px;">Therefore, we prioritize a high Recall (~70%).</p>
-        </div>
+    <div class="key-point" style="margin-top: 25px;">
+        <strong>What it shows:</strong> How Precision and Recall change as we adjust the classification threshold, revealing the fundamental trade-off between catching more churners vs. reducing false alarms.
     </div>
-    
+
+    <div class="key-point">
+        <strong>How to read it:</strong>
+        <ul style="margin-top: 10px;">
+            <li><strong>X-axis:</strong> Probability threshold (0.0 to 1.0)</li>
+            <li><strong>Blue line:</strong> Precision (% of predicted churners who actually churned)</li>
+            <li><strong>Green line:</strong> Recall (% of actual churners we caught)</li>
+            <li>As threshold ↓: Recall ↑ but Precision ↓ (catch more churners, more false alarms)</li>
+            <li>As threshold ↑: Recall ↓ but Precision ↑ (fewer false alarms, miss more churners)</li>
+        </ul>
+    </div>
+
     <div class="metric-box" style="margin-top: 30px; border-left-color: #22c55e;">
-        <div class="metric-value" style="font-size: 42px;">Threshold: 0.45</div>
-        <div class="metric-label">Selected to achieve the target recall of ~70% while maintaining acceptable precision. This ensures we proactively engage a majority of at-risk customers.</div>
+        <h3 style="margin-top: 0; color: #1e40af;">Optimal Threshold Selection (0.42)</h3>
+        <p style="margin-bottom: 10px;">Based on the Precision-Recall curve and business context, a threshold of 0.42 is chosen. At this threshold:</p>
+        <ul style="margin-left: 20px;">
+            <li style="color: #166534;"><strong>Recall ≈ 71%:</strong> The model successfully identifies approximately 71% of actual churners.</li>
+            <li style="color: #991b1b;"><strong>Precision ≈ 18%:</strong> Of all customers flagged as potential churners, about 18% actually churn.</li>
+        </ul>
+        <p style="font-weight: 600; margin-top: 15px;">Business rationale: Given that the cost of a missed churner ($500-5,000) significantly outweighs the cost of a false alarm ($10-50), prioritizing <strong>Recall</strong> is crucial for an effective retention strategy. This threshold balances capturing a high percentage of churners with an acceptable level of false positives.</p>
     </div>
 
     <div class="footer">Slide 6b</div>
@@ -570,38 +536,38 @@
         <h2>Key Churn Drivers</h2>
     </div>
 
-    <p style="margin-bottom: 25px;">Feature importance analysis reveals what drives customer churn:</p>
+    <p style="margin-bottom: 25px;">Feature importance analysis reveals what drives customer churn, with a focus on segment and transaction behavior:</p>
 
     <div class="warning-point">
-        <div style="font-size: 28px; font-weight: 700; color: #dc2626; margin-bottom: 10px;">🔴 #1 Predictor: Days Since Last Transaction</div>
-        <p style="margin: 0; font-size: 20px;">The longer a customer has been inactive, the higher their churn risk. This is the <strong>single strongest predictor</strong> in the model.</p>
+        <div style="font-size: 28px; font-weight: 700; color: #dc2626; margin-bottom: 10px;">🔴 #1 Predictor: Customer Segment (Student)</div>
+        <p style="margin: 0; font-size: 20px;">The <strong>'Student' segment</strong> is the most impactful feature, strongly influencing churn prediction, indicating unique behavioral patterns in this group.</p>
     </div>
 
     <div class="two-column" style="margin-top: 25px;">
         <div>
             <div class="key-point">
-                <strong>2. Onboarding Days Ago</strong>
-                <p style="margin: 5px 0 0 0; font-size: 18px;">Older accounts have a higher churn risk compared to newer accounts</p>
+                <strong>2. Customer Segment (Retail)</strong>
+                <p style="margin: 5px 0 0 0; font-size: 18px;">The <strong>'Retail' segment</strong> is also highly influential, though to a lesser extent than students.</p>
             </div>
             <div class="key-point" style="margin-top: 15px;">
-                <strong>3. Transaction Count</strong>
-                <p style="margin: 5px 0 0 0; font-size: 18px;">Customers with fewer transactions are more likely to churn</p>
+                <strong>3. Average Transaction Amount</strong>
+                <p style="margin: 5px 0 0 0; font-size: 18px;">The typical transaction size plays a significant role in churn prediction.</p>
             </div>
         </div>
         <div>
             <div class="key-point">
-                <strong>4. Support Tickets (90d)</strong>
-                <p style="margin: 5px 0 0 0; font-size: 18px;">Higher support tickets correlate with higher churn risk</p>
+                <strong>4. City (Unknown)</strong>
+                <p style="margin: 5px 0 0 0; font-size: 18px;">Customers with an unknown city are a strong indicator of churn, potentially highlighting data quality issues or specific behaviors.</p>
             </div>
             <div class="key-point" style="margin-top: 15px;">
-                <strong>5. Essential Spend Share</strong>
-                <p style="margin: 5px 0 0 0; font-size: 18px;">Lower essential spending indicates lower engagement</p>
+                <strong>5. Average Debit Amount</strong>
+                <p style="margin: 5px 0 0 0; font-size: 18px;">The average amount of money spent (debit) significantly impacts churn risk.</p>
             </div>
         </div>
     </div>
 
     <div class="metric-box" style="margin-top: 25px; background: #fffbeb; border-left-color: #f59e0b;">
-        <strong>Business Insight:</strong> Focus retention efforts on inactive customers (>30 days since last transaction) and new customers in their first 90 days
+        <strong>Business Insight:</strong> Tailor retention strategies based on customer segments and their typical transaction behaviors. Address data quality for 'Unknown' city customers.
     </div>
 
     <div class="footer">Slide 7</div>
@@ -613,70 +579,37 @@
         <h2>Churn Drivers: Feature Importance</h2>
     </div>
 
-    <p style="margin-bottom: 20px;">By inspecting the model's coefficients, we can rank features by their impact on churn prediction. A larger absolute value means a stronger influence.</p>
+    <p style="margin-bottom: 20px;">By inspecting the model's coefficients, we can rank features by their absolute impact on churn prediction. A larger absolute value means a stronger influence.</p>
 
-    <div class="two-column">
-        <div>
-            <h3 style="margin-top: 0; color: #dc2626;">Features that INCREASE Churn Risk 🔴</h3>
-            <ol style="margin-left: 25px; font-size: 18px;">
-                <li><strong>days_since_last_txn</strong> (Impact: ~1.4)</li>
-                <li><strong>onboarding_days_ago</strong> (Impact: ~0.9)</li>
-                <li><strong>support_tickets_90d</strong> (Impact: ~0.7)</li>
-                <li>city_Rawalpindi</li>
-                <li>city_Lahore</li>
-                <li>segment_Retail</li>
-            </ol>
-        </div>
-        <div>
-            <h3 style="margin-top: 0; color: #166534;">Features that DECREASE Churn Risk 🟢</h3>
-            <ol style="margin-left: 25px; font-size: 18px;">
-                <li><strong>txn_count</strong> (Impact: ~-0.8)</li>
-                <li><strong>essential_spend_share</strong> (Impact: ~-0.6)</li>
-                <li>max_credit</li>
-                <li>avg_credit_amount</li>
-                <li>total_inflow</li>
-                <li>unique_merchants_count</li>
-            </ol>
-        </div>
+    <div style="margin-top: 20px;">
+        <h3 style="margin-top: 0; color: #1e40af;">Top 15 Most Influential Churn Features (Ranked by Absolute Impact)</h3>
+        <ol style="margin-left: 25px; font-size: 18px;">
+            <li><strong>segment_Student</strong></li>
+            <li><strong>segment_Retail</strong></li>
+            <li><strong>avg_txn_amount</strong></li>
+            <li><strong>city_Unknown</strong></li>
+            <li><strong>avg_debit_amount</strong></li>
+            <li>max_credit</li>
+            <li>total_inflow</li>
+            <li>city_Islamabad</li>
+            <li>unique_merchants_count</li>
+            <li>debit_txn_count</li>
+            <li>avg_credit_amount</li>
+            <li>txn_count</li>
+            <li>city_Hyderabad</li>
+            <li>city_Rawalpindi</li>
+            <li>city_Multan</li>
+        </ol>
     </div>
 
     <div class="key-point" style="margin-top: 25px;">
-        <strong>Key Takeaway:</strong> Churn is primarily driven by <strong>inactivity</strong> (high `days_since_last_txn`, low `txn_count`). Customer tenure (`onboarding_days_ago`) and engagement with essential services (`essential_spend_share`) are also critical factors.
+        <strong>Key Takeaway:</strong> Customer segment and various transaction characteristics (average amount, total inflow, debit amount, unique merchants, total count) are the primary drivers of churn. Missing city data (`city_Unknown`) is also a significant indicator.
     </div>
     
     <div class="footer">Slide 7a</div>
 </div>
 
-<!-- Slide 7b: Churn Drivers - Inactivity Behavior -->
-<div class="slide">
-    <div class="slide-header">
-        <h2>Churn Drivers: Inactivity Behavior</h2>
-    </div>
 
-    <p style="margin-bottom: 25px;">A box plot of <strong>Days Since Last Transaction</strong> provides strong visual evidence for why inactivity is the #1 predictor of churn.</p>
-
-    <div class="two-column" style="margin-top: 30px;">
-        <div class="metric-box" style="background: #f0fdf4; border-left-color: #22c55e;">
-            <h3 style="margin-top: 0; color: #166534;">Active Customers (Not Churned)</h3>
-            <div class="metric-value" style="color: #166534;">10-15</div>
-            <div class="metric-label">Median Days Since Last Transaction</div>
-            <p style="margin-top: 15px;">These customers are consistently active, with 50% having transacted in the last two weeks.</p>
-        </div>
-        <div class="metric-box" style="background: #fef2f2; border-left-color: #ef4444;">
-            <h3 style="margin-top: 0; color: #b91c1c;">Churned Customers</h3>
-            <div class="metric-value" style="color: #b91c1c;">40-50</div>
-            <div class="metric-label">Median Days Since Last Transaction</div>
-            <p style="margin-top: 15px;">Churned customers are typically inactive for over a month, showing a clear behavioral shift.</p>
-        </div>
-    </div>
-    
-    <div class="warning-point" style="margin-top: 30px; background: #fffbeb; border-left-color: #f59e0b;">
-        <h3 style="margin-top: 0; color: #92400e;">Actionable Insight</h3>
-        <p>The clear separation between the two groups confirms that a threshold of <strong>>30 days of inactivity</strong> is a powerful and reliable trigger for initiating retention campaigns.</p>
-    </div>
-
-    <div class="footer">Slide 7b</div>
-</div>
 
 <!-- Slide 8: Recommendations & Next Steps -->
 <div class="slide">
@@ -687,7 +620,7 @@
     <h3>🎯 Business Recommendations</h3>
 
     <div class="key-point">
-        <strong>1. Deploy Churn Model (Threshold = 0.45)</strong>
+        <strong>1. Deploy Churn Model (Threshold = 0.42)</strong>
         <ul style="margin-top: 10px;">
             <li>Identify at-risk customers weekly</li>
             <li>Target with retention campaigns (special offers, feedback surveys)</li>
@@ -701,6 +634,15 @@
             <li>Add "Financial Health" dashboard showing net cashflow trends</li>
             <li>Provide segment-specific spending insights and budgeting tips</li>
             <li>Alert customers with negative cashflow about financial wellness tools</li>
+        </ul>
+    </div>
+
+    <div class="key-point">
+        <strong>3. Tailor Retention Strategies based on New Churn Drivers</strong>
+        <ul style="margin-top: 10px;">
+            <li>Develop specialized retention campaigns for the 'Student' and 'Retail' segments, considering their unique behavioral patterns.</li>
+            <li>Investigate the 'city_Unknown' factor to resolve data quality issues or understand the underlying churn behavior.</li>
+            <li>Analyze transaction amount patterns (average, debit) to identify thresholds for early intervention.</li>
         </ul>
     </div>
 
